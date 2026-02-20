@@ -1,0 +1,28 @@
+dispatcher-1  | INFO:dispatcher.worker:Worker started (poll_interval=1.5, claim_limit=10)
+dispatcher-1  | INFO:     Started server process [1]
+dispatcher-1  | INFO:     Waiting for application startup.
+dispatcher-1  | INFO:     Application startup complete.
+dispatcher-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+dispatcher-1  | INFO:     172.18.0.1:47152 - "POST /events HTTP/1.1" 202 Accepted
+dispatcher-1  | INFO:httpx:HTTP Request: POST http://mock-receiver:8080/webhook "HTTP/1.1 500 Internal Server Error"
+dispatcher-1  | INFO:dispatcher.worker:Will retry event_id=9f5054f0-db2c-46d2-a73a-677bd85c9b13 at 2026-02-20T07:02:58.563769+00:00 (attempt 1)
+dispatcher-1  | INFO:httpx:HTTP Request: POST http://mock-receiver:8080/webhook "HTTP/1.1 500 Internal Server Error"
+dispatcher-1  | INFO:dispatcher.worker:Will retry event_id=9f5054f0-db2c-46d2-a73a-677bd85c9b13 at 2026-02-20T07:03:09.111385+00:00 (attempt 2)
+dispatcher-1  | INFO:httpx:HTTP Request: POST http://mock-receiver:8080/webhook "HTTP/1.1 500 Internal Server Error"
+dispatcher-1  | INFO:dispatcher.worker:Will retry event_id=9f5054f0-db2c-46d2-a73a-677bd85c9b13 at 2026-02-20T07:03:28.534463+00:00 (attempt 3)
+dispatcher-1  | INFO:dispatcher.worker:Worker started (poll_interval=1.5, claim_limit=10)
+dispatcher-1  | INFO:     Started server process [1]
+dispatcher-1  | INFO:     Waiting for application startup.
+dispatcher-1  | INFO:     Application startup complete.
+dispatcher-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+dispatcher-1  | INFO:     172.18.0.1:47152 - "POST /events HTTP/1.1" 202 Accepted
+dispatcher-1  | INFO:httpx:HTTP Request: POST http://mock-receiver:8080/webhook "HTTP/1.1 500 Internal Server Error"
+dispatcher-1  | INFO:dispatcher.worker:Will retry event_id=9f5054f0-db2c-46d2-a73a-677bd85c9b13 at 2026-02-20T07:02:58.563769+00:00 (attempt 1)
+dispatcher-1  | INFO:httpx:HTTP Request: POST http://mock-receiver:8080/webhook "HTTP/1.1 500 Internal Server Error"
+dispatcher-1  | INFO:dispatcher.worker:Will retry event_id=9f5054f0-db2c-46d2-a73a-677bd85c9b13 at 2026-02-20T07:03:09.111385+00:00 (attempt 2)
+dispatcher-1  | INFO:httpx:HTTP Request: POST http://mock-receiver:8080/webhook "HTTP/1.1 500 Internal Server Error"
+dispatcher-1  | INFO:dispatcher.worker:Will retry event_id=9f5054f0-db2c-46d2-a73a-677bd85c9b13 at 2026-02-20T07:03:28.534463+00:00 (attempt 3)
+dispatcher-1  | WARNING:dispatcher.worker:Delivery failed event_id=9f5054f0-db2c-46d2-a73a-677bd85c9b13 attempt=4 error=timed out
+dispatcher-1  | INFO:dispatcher.worker:Will retry event_id=9f5054f0-db2c-46d2-a73a-677bd85c9b13 at 2026-02-20T07:04:17.140357+00:00 (attempt 4)
+dispatcher-1  | INFO:httpx:HTTP Request: POST http://mock-receiver:8080/webhook "HTTP/1.1 200 OK"
+dispatcher-1  | INFO:dispatcher.worker:Delivered event_id=9f5054f0-db2c-46d2-a73a-677bd85c9b13 after 5 attempt(s)

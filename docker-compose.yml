@@ -1,0 +1,49 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: webhook_dispatcher
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+
+  mock-receiver:
+    build:
+      context: ./mock_receiver
+      dockerfile: Dockerfile
+    environment:
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET:-shared-secret}
+      PORT: 8080
+      FAILURE_RATE: "0.7"
+      MAX_DELAY_SEC: "5"
+      HANG_RATE: "0.08"
+    ports:
+      - "8080:8080"
+
+  dispatcher:
+    build:
+      context: ./dispatcher
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/webhook_dispatcher
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET:-shared-secret}
+      TARGET_URL: http://mock-receiver:8080/webhook
+      WORKER_POLL_INTERVAL: "1.5"
+      HTTP_TIMEOUT: "15"
+      MAX_ATTEMPTS: "20"
+      BACKOFF_BASE_SECONDS: "2"
+      WORKER_CLAIM_LIMIT: "10"
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
